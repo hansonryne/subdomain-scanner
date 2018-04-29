@@ -23,7 +23,7 @@ class ComparisonsController < ApplicationController
         if @comparison.comparer_id == @comparison.compared_id
           format.html { redirect_to scan_path(@comparison.comparer_id), flash: {error: "You can't compare a scan to itself"} }
         elsif @comparison.check_duplicate
-          format.html { redirect_to comparison_path(@comparison.get_duplicate(@comparison)), flash: {error: "This comparison has already been created.  Here it is:"} }
+          format.html { redirect_to comparison_path(@comparison.get_duplicate), flash: {error: "This comparison has already been created.  Here it is:"} }
         else
           format.html { redirect_to scan_path(@comparison.comparer_id), flash: {error: "An error has occured. Make sure you have selected a scan to compare to or that this comparison has not already been created"} }
         end

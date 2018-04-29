@@ -18,8 +18,12 @@ class Comparison < ApplicationRecord
     end
   end
   
-  def get_duplicate(current_comparison)
-    current_comparison.comparer.comparisons.first
+  def get_duplicate
+    if Comparison.where(compared_id: comparer_id, comparer_id: compared_id).present?
+      Comparison.where(compared_id: comparer_id, comparer_id: compared_id).pluck(:id)
+    else
+      Comparison.where(compared_id: compared_id, comparer_id: comparer_id).pluck(:id)
+    end
   end
   
   def find_common_domains
