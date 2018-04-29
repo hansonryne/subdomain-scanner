@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_27_183602) do
+ActiveRecord::Schema.define(version: 2018_04_29_230540) do
 
   create_table "comparisons", force: :cascade do |t|
     t.integer "comparer_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2018_04_27_183602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.string "brute"
+    t.integer "threads"
   end
 
   create_table "subdomain_records", force: :cascade do |t|

@@ -14,62 +14,35 @@ class Scan < ApplicationRecord
 
 
   def do_subdomain_scan
-    datetime = DateTime.current
-    self.filename = datetime.strftime("%Y%m%d%H%Mnmap")
-    outfile = self.filename
+    command = "python " + Rails.root.join('lib', 'assets', 'Sublist3r', 'sublist3r.py').to_s + " "
 
-    command = "nmap "
-
-    case self.speed
-    when "1"
-      command.concat("-T1 ")
-    when "2"
-      command.concat("-T2 ")
-    when "3"
-      command.concat("-T3 ")
-    when "4"
-      command.concat("-T4 ")
-    when "5"
-      command.concat("-T5 ")
+    case self.threads
+    when 16
+      command.concat("-t 16 ")
+    when 32
+      command.concat("-t 32 ")
+    when 48
+      command.concat("-t 48 ")
+    when 64
+      command.concat("-t 64 ")
     else
     end
 
-    if self.ping == "off"
-      command.concat("-Pn ")
+    if self.brute == "on"
+      command.concat("-b ")
     end
 
-    if self.fragment == "on"
-      command.concat("-f ")
-    end
+    command.concat("-d #{:name} -o " + Rails.root.join('lib', 'assets', 'Sublist3r', 'test.txt').to_s)
+    
+    puts command
 
-    #if self.zombie == "1"
-    #	command.concat("-sI  ")
-    #end
 
-    if self.service_version == "on"
-      command.concat("-sV ")
-    end
+#     #remove the > /dev/null eventually
+#     system "sudo #{command} -oX #{outfile} > /dev/null"
+#     system "xsltproc #{outfile} -o public/nmapscans/#{outfile}.html"
+#     system "rm -rf #{outfile}"
 
-    if self.os == "on"
-      command.concat("-O ")
-    end
-
-    if self.safe == "on"
-      command.concat("-sC ")
-    end
-
-    if self.vuln == "on"
-      command.concat("--script vuln ")
-    end
-
-    command.concat("-p #{self.port} #{self.target}")
-
-    #remove the > /dev/null eventually
-    system "sudo #{command} -oX #{outfile} > /dev/null"
-    system "xsltproc #{outfile} -o public/nmapscans/#{outfile}.html"
-    system "rm -rf #{outfile}"
-
-    self.save
+#     self.save
   end
 
 
