@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  Link for sharing this comparison: <%= link_to request.original_url %>
+</p>
+<%= link_to 'Scan 1', scan_path(@comparison.comparer_id) %> |
+<%= link_to 'Scan 2', scan_path(@comparison.compared_id) %>
+
+<p>
+  Scan 1
+</p>
+<% @comparison.comparer.subdomain_records.each do |r| %>
+  <%= r.name %><br>
+<% end %>
+
+<p>
+  Scan 2
+</p>
+<% @comparison.compared.subdomain_records.each do |r| %>
+  <%= r.name %><br>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subdomain Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Domain Name:</th>
+      <th>Created At:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subdomain_records.each do |subdomain_record| %>
+      <tr>
+        <td><%= subdomain_record.name %></td>
+        <td><%= subdomain_record.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= link_to 'Show', subdomain_record %></td>
+        <td><%= link_to 'Destroy', subdomain_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

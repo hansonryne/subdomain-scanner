@@ -1,0 +1,21 @@
+<%= form_with(model: @comparison, local: true) do |form| %>
+  <% if @comparison.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comparison.errors.count, "error") %> prohibited this comparison from being generated:</h2>
+
+
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Compare to:" %>
+    <%= form.collection_select(:compared_id, Scan.all, :id, :name, prompt: true) %>
+  </div>
+
+  <%= form.hidden_field :comparer_id, :value => @scan.id.to_s %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

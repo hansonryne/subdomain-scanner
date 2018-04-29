@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @scan.name %>
+</p>
+
+<p>
+  Found Subdomains: <hr>
+  <% @scan.subdomain_records.each do |r| %>
+    <%= r.name %><br>
+  <% end %>
+</p>
+
+<%= render 'comparison_form' %>
+<%= link_to 'Edit', edit_scan_path(@scan) %> |
+<%= link_to 'Back', scans_path %>
