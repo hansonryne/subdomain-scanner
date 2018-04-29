@@ -1,7 +1,7 @@
 <%= form_with(model: scan, local: true) do |form| %>
   <% if scan.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(scan.errors.count, "error") %> prohibited this scan from being saved:</h2>
+      <h4><%= pluralize(scan.errors.count, "error") %> prohibited this scan from being saved:</h4>
 
       <ul>
       <% scan.errors.full_messages.each do |message| %>
@@ -14,7 +14,27 @@
   <%= form.label :name %>
   <%= form.text_field :name %>
   </div>
-    
+
+<%= form.label "Use Brute" %>
+<div class="switch">
+  <input name="scan[brute]" type="hidden" value="off">
+  <input id="vuln" name="scan[brute]" type="checkbox">
+  <%= label_tag :brute %>
+</div>
+
+<%= form.label :threads %>
+<div class="row">
+  <div class="small-10 columns">
+    <div class="range-slider" data-slider data-options="start:16; end: 64; step:16; display_selector: #threads; initial: 16; precision: 0;">
+      <span class="range-slider-handle" role="slider" tabindex="0"></span>
+      <span class="range-slider-active-segment"></span>
+    </div>
+  </div>
+  <div class="small-2 columns">
+    <input type="number" id="threads" name="scan[threads]" value="" />
+  </div>
+</div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
