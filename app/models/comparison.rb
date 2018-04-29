@@ -5,7 +5,6 @@ class Comparison < ApplicationRecord
   validates :comparer_id, presence: true
   validates :compared_id, presence: true
   
-  validates :compared_id, :uniqueness => {:scope => :comparer_id}
   validate :check_same_scan
   validate :check_duplicate
   
@@ -14,13 +13,13 @@ class Comparison < ApplicationRecord
   end
   
   def check_duplicate
-    if Comparison.where(compared_id: comparer_id, comparer_id: compared_id).present?
+    if Comparison.where(compared_id: comparer_id, comparer_id: compared_id).present? or Comparison.where(compared_id: compared_id, comparer_id: comparer_id).present?
       errors[:base] << "This comparison already exists"
     end
   end
   
   def get_duplicate(current_comparison)
-    Comparison.where(compared_id: current_comparison.comparer_id, comparer_id: current_comparison.compared_id).pluck(:id)
+    current_comparison.comparer.comparisons.first
   end
   
   def find_common_domains
