@@ -26,6 +26,10 @@ class ScansController < ApplicationController
   # POST /scans.json
   def create
     @scan = Scan.new(scan_params)
+    subdomain_recs = ["these", "are", "tests"]
+    subdomain_recs.each do |s|
+      SubdomainRecord.create(name: s, scan_id: @scan.id)
+    end
 
     respond_to do |format|
       if @scan.save

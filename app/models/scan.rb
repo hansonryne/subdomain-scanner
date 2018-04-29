@@ -1,13 +1,13 @@
 class Scan < ApplicationRecord
   has_many :subdomain_records, dependent: :destroy
-  has_many :comparisons, class_name:  "Scan",
+  has_many :comparisons, class_name:  "Comparison",
                                   foreign_key: "comparer_id",
                                   dependent:   :destroy
   has_many :compared_scans, through: :comparisons, source: :compared
-  has_many :reverse_comparisons, class_name:  "Scan",
+  has_many :reverse_comparisons, class_name:  "Comparison",
                                    foreign_key: "compared_id",
                                    dependent:   :destroy
-  has_many :comparers, through: :passive_relationships, source: :comparer
+  has_many :comparers, through: :reverse_comparisons, source: :comparer
   
   validates :name, presence: true
   

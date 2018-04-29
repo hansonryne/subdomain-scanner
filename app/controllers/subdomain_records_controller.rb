@@ -25,16 +25,16 @@ class SubdomainRecordsController < ApplicationController
   # POST /subdomain_records.json
   def create
     @subdomain_record = SubdomainRecord.new(subdomain_record_params)
-
-    respond_to do |format|
-      if @subdomain_record.save
-        format.html { redirect_to @subdomain_record, notice: 'Subdomain record was successfully created.' }
-        format.json { render :show, status: :created, location: @subdomain_record }
-      else
-        format.html { render :new }
-        format.json { render json: @subdomain_record.errors, status: :unprocessable_entity }
-      end
-    end
+    @subdomain_record.save
+#     respond_to do |format|
+#       if @subdomain_record.save
+#         format.html { redirect_to @subdomain_record, notice: 'Subdomain record was successfully created.' }
+#         format.json { render :show, status: :created, location: @subdomain_record }
+#       else
+#         format.html { render :new }
+#         format.json { render json: @subdomain_record.errors, status: :unprocessable_entity }
+#       end
+#     end
   end
 
   # PATCH/PUT /subdomain_records/1
@@ -69,6 +69,6 @@ class SubdomainRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subdomain_record_params
-      params.fetch(:subdomain_record, {})
+      params.require(:subdomain_record).permit(:name)
     end
 end
