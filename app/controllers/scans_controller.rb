@@ -29,7 +29,7 @@ class ScansController < ApplicationController
 
     respond_to do |format|
       if @scan.save
-        subdomain_recs = ["these", "are", "tests"]
+        subdomain_recs = ["these", "are", "tests", "too"]
         subdomain_recs.each do |s|
           SubdomainRecord.create(name: s, scan_id: "#{@scan.id}")
         end

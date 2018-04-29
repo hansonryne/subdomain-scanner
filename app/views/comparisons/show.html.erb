@@ -9,13 +9,21 @@
 <p>
   Scan 1
 </p>
-<% @comparison.comparer.subdomain_records.each do |r| %>
-  <%= r.name %><br>
+<% @comparison.find_unique_domains[:unique_comparer].each do |r| %>
+  <%= r %>
 <% end %>
+
 
 <p>
   Scan 2
 </p>
-<% @comparison.compared.subdomain_records.each do |r| %>
-  <%= r.name %><br>
+<% @comparison.find_unique_domains[:unique_compared].each do |r| %>
+  <%= r %>
 <% end %>
+
+<p>
+  Common Subdomains:
+</p>
+  <% @comparison.find_common_domains.each do |r| %>
+    <%= r %><br>
+  <% end %>
