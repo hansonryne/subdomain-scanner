@@ -18,9 +18,11 @@
 <%= form.label "Use Brute" %>
 <div class="switch">
   <input name="scan[brute]" type="hidden" value="off">
-  <input id="vuln" name="scan[brute]" type="checkbox">
+  <input id="brute" name="scan[brute]" type="checkbox">
   <%= label_tag :brute %>
 </div>
+
+
 
 <%= form.label :threads %>
 <div class="row">

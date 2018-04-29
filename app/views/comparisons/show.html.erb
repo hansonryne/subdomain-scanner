@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
-  <div class="columns small-2 large-6">
+<div class="row" style="text-align: center">
+  <div class="columns small-2 large-4">
     <p>
     <%= link_to "#{@comparison.comparer.name}", scan_path(@comparison.comparer_id), class: "button expand" %>
     </p>
@@ -9,39 +9,30 @@
       <%= r %><br>
     <% end %>
   </div>
-  <div class="columns small-2 large-6">
+
+  <div class="columns small-2 large-4">
     <p>
     <%= link_to "#{@comparison.compared.name}", scan_path(@comparison.compared_id), class: "button expand" %>
     </p>
     <% @comparison.find_unique_domains[:unique_compared].each do |r| %>
       <%= r %><br>
     <% end %>
-  </div>
+  </div>  
 </div>
 
-<hr>
-
-<ul class="accordion" data-accordion data-allow-all-closed="true">
-  <li class="accordion-item " data-accordion-item>
-    <a href="#" class="accordion-title">Common Subdomains:</a>
-    <div class="accordion-content" data-tab-content>
-      <% @comparison.find_common_domains.each do |r| %>
-        <%= r %><br>
-      <% end %>
-    </div>
-  </li>
-</ul>
-
-
-<div class="row">
-  <div class="columns small-6 large-4 large-centered">
-    <p class="button small extend">
-      Common Subdomains:
-    </p>
+<div class="row" style="text-align: center">
+  <div class="columns small-4 small-centered">
+<ul class="accordion" data-accordion>
+  <li class="accordion-navigation">
+    <a href="#panel1a">Common</a>
+    <div id="panel1a" class="content active">
     <% @comparison.find_common_domains.each do |r| %>
       <%= r %><br>
     <% end %>
-  </div>  
+    </div>
+  </li>
+</ul>
+</div>
 </div>
 
 <p>

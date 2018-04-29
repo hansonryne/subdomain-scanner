@@ -25,21 +25,22 @@ class ScansController < ApplicationController
   # POST /scans
   # POST /scans.json
   def create
-    @scan = Scan.new(scan_params)
+    render plain: params.inspect
+#     @scan = Scan.new(scan_params)
 
-    respond_to do |format|
-      if @scan.save
-        subdomain_recs = ["these", "are", "tests", "too"]
-        subdomain_recs.each do |s|
-          SubdomainRecord.create(name: s, scan_id: "#{@scan.id}")
-        end
-        format.html { redirect_to @scan, notice: 'Scan was successfully created.' }
-        format.json { render :show, status: :created, location: @scan }
-      else
-        format.html { render :new }
-        format.json { render json: @scan.errors, status: :unprocessable_entity }
-      end
-    end
+#     respond_to do |format|
+#       if @scan.save
+#         subdomain_recs = ["these", "are", "tests", "too"]
+#         subdomain_recs.each do |s|
+#           SubdomainRecord.create(name: s, scan_id: "#{@scan.id}")
+#         end
+#         format.html { redirect_to @scan, notice: 'Scan was successfully created.' }
+#         format.json { render :show, status: :created, location: @scan }
+#       else
+#         format.html { render :new }
+#         format.json { render json: @scan.errors, status: :unprocessable_entity }
+#       end
+#     end
   end
 
   # PATCH/PUT /scans/1
@@ -74,6 +75,6 @@ class ScansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scan_params
-      params.require(:scan).permit(:name)
+      params.require(:scan).permit(:name, :brute, :threads)
     end
 end
