@@ -2,6 +2,7 @@ class ScanFillJob < ApplicationJob
   queue_as :default
 
   def perform(scan)
+    # puts scan.name
     subs = scan.do_subdomain_scan
     subs.each do |s|
       scan.subdomain_records.create!(name: s, scan_id: scan.id)

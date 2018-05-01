@@ -1,3 +1,20 @@
-<h3>Welcome</h3>
-  <%= link_to 'See previous scans', scans_path, class: "button" %>
-  <%= link_to 'Run a new scan', new_scan_path, class: "button" %>
+<div style="text-align: center">
+<div class="row">
+  <div class="columns small-6 small-centered">
+    <h3>Welcome</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="columns small-centered">
+    <button href="#" data-dropdown="scanDrop" aria-controls="scanDrop" aria-expanded="false" class="button dropdown">Get
+      Started
+    </button>
+    <br>
+    <ul id="scanDrop" data-dropdown-content class="f-dropdown" aria-hidden="true">
+      <li><%= link_to 'Run a new scan', new_scan_path %></li>
+      <li><%= link_to 'See previous scans', scans_path %></li>
+    </ul>
+  </div>
+</div>
+</div>
+

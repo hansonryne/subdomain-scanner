@@ -37,7 +37,8 @@ class Scan < ApplicationRecord
     end
 
     command.concat("-d #{self.name} -o " + outfile)
-    
+
+    # puts "#{command}"
     system "#{command}"
 
     raw = File.readlines(outfile)
