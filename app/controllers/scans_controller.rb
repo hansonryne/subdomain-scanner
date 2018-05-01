@@ -11,6 +11,7 @@ class ScansController < ApplicationController
   # GET /scans/1.json
   def show
     @comparison = Comparison.new
+    @subdomain_records = @scan.subdomain_records.sort_by {|s| s.name}.paginate(:page => params[:page], :per_page => 50)
   end
 
   # GET /scans/new

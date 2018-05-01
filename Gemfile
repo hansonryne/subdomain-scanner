@@ -30,6 +30,7 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'twilio-ruby'
 gem 'therubyracer', :platform=>:ruby
+gem 'will_paginate'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

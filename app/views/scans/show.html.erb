@@ -6,11 +6,13 @@
 </p>
 
 <p>
-  Found Subdomains: <hr>
-  <% @scan.subdomain_records.sort_by {|s| s.name}.each do |r| %>
+  Found Subdomains: <%= @scan.subdomain_records.length %><hr>
+  <% @subdomain_records.each do |r| %>
     <%= r.name %><br>
   <% end %>
 </p>
+
+<%= will_paginate @subdomain_records %>
 
 <%= render 'comparison_form' %>
 <%= link_to 'Edit', edit_scan_path(@scan) %> |
