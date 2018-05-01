@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_01_120027) do
+ActiveRecord::Schema.define(version: 2018_05_01_202029) do
 
   create_table "comparisons", force: :cascade do |t|
     t.integer "comparer_id"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 2018_05_01_120027) do
     t.index ["compared_id"], name: "index_comparisons_on_compared_id"
     t.index ["comparer_id", "compared_id"], name: "index_comparisons_on_comparer_id_and_compared_id", unique: true
     t.index ["comparer_id"], name: "index_comparisons_on_comparer_id"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "scans", force: :cascade do |t|

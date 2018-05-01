@@ -31,7 +31,7 @@ class ScansController < ApplicationController
 
     respond_to do |format|
       if @scan.save
-        ScanFillJob.perform_later(@scan)
+        SubdomainDoScanJob.perform_later(@scan)
         format.html { redirect_to @scan, notice: 'Scan was successfully created.' }
         format.json { render :show, status: :created, location: @scan }
       else

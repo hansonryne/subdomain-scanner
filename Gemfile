@@ -31,7 +31,7 @@ gem 'jquery-rails'
 gem 'twilio-ruby'
 gem 'therubyracer', :platform=>:ruby
 gem 'will_paginate'
-gem 'sidekiq'
+gem 'delayed_job_active_record'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
