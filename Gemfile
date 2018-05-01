@@ -28,6 +28,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'foundation-rails', '~> 5.5'
 gem 'high_voltage'
 gem 'jquery-rails'
+gem 'twilio-ruby'
 gem 'therubyracer', :platform=>:ruby
 group :development do
   gem 'better_errors'

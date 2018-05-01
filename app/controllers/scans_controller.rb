@@ -30,8 +30,7 @@ class ScansController < ApplicationController
 
     respond_to do |format|
       if @scan.save
-        @scan.do_subdomain_scan
-#         ScanFillJob.perform_later(@scan)
+        ScanFillJob.perform_later(@scan)
         format.html { redirect_to @scan, notice: 'Scan was successfully created.' }
         format.json { render :show, status: :created, location: @scan }
       else
@@ -73,6 +72,6 @@ class ScansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scan_params
-      params.require(:scan).permit(:name, :brute, :threads)
+      params.require(:scan).permit(:name, :brute, :threads, :phone_number)
     end
 end

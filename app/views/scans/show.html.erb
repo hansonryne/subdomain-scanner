@@ -7,7 +7,7 @@
 
 <p>
   Found Subdomains: <hr>
-  <% @scan.subdomain_records.each do |r| %>
+  <% @scan.subdomain_records.sort_by {|s| s.name}.each do |r| %>
     <%= r.name %><br>
   <% end %>
 </p>
