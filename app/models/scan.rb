@@ -42,7 +42,7 @@ class Scan < ApplicationRecord
     system "#{command}"
 
     raw = File.readlines(outfile)
-    sub_array = raw.map { |e| e.strip.downcase }
+    sub_array = raw.map { |e| e.strip.downcase }.uniq
 
 
   end
@@ -58,25 +58,7 @@ class Scan < ApplicationRecord
     client.messages.create(
         from: from,
         to: to,
-        body: "That thing you wanted a note about."
+        body: "Your scan of #{self.name} is done."
     )
   end
-
-
-=begin
-    # Follows a scan.
-  def follow(other_scan)
-    active_relationships.create(followed_id: other_scan.id)
-  end
-
-  # Unfollows a scan.
-  def unfollow(other_scan)
-    active_relationships.find_by(followed_id: other_scan.id).destroy
-  end
-
-  # Returns true if the current scan is following the other scan.
-  def following?(other_scan)
-    following.include?(other_scan)
-  end
-=end
 end
