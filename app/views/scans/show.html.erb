@@ -13,7 +13,7 @@
 </p>
 
 <%= will_paginate @subdomain_records %>
-
+<%= link_to 'Export', scan_path(@scan, format: :csv), class: "button tiny" %>
 <%= render 'comparison_form' %>
 <%= link_to 'Edit', edit_scan_path(@scan) %> |
 <%= link_to 'Back', scans_path %>

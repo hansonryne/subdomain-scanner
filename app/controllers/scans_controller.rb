@@ -12,6 +12,10 @@ class ScansController < ApplicationController
   def show
     @comparison = Comparison.new
     @subdomain_records = @scan.subdomain_records.sort_by {|s| s.name}.paginate(:page => params[:page], :per_page => 50)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @scan.as_csv, filename: "scan-#{@scan.name}.csv" }
+    end
   end
 
   # GET /scans/new

@@ -9,7 +9,7 @@
 
   <div class="field">
     <%= form.label "Compare to:" %>
-    <%= form.collection_select(:compared_id, Scan.all, :id, :name, prompt: true) %>
+    <%= form.collection_select(:compared_id, Scan.where(name: @scan.name).where.not(id: @scan.id), :id, :name_and_created_at, prompt: true) %>
   </div>
 
   <%= form.hidden_field :comparer_id, :value => @scan.id.to_s %>

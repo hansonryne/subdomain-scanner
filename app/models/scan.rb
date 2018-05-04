@@ -61,4 +61,18 @@ class Scan < ApplicationRecord
         body: "Your scan of #{self.name} is done."
     )
   end
+  
+  def as_csv
+    header = %w(name)
+    CSV.generate(headers: true) do |csv|
+      csv << %w(Subdomain)
+      self.subdomain_records.each do |record|
+        csv << header.map{ |attr| record.send(attr) }
+      end
+    end
+  end
+    
+  def name_and_created_at
+    "#{self.name} -- #{self.created_at.strftime("%d %B %y")}"
+  end
 end
