@@ -32,6 +32,8 @@ gem 'twilio-ruby'
 gem 'therubyracer', :platform=>:ruby
 gem 'will_paginate'
 gem 'delayed_job_active_record'
+gem 'ransack'
+
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

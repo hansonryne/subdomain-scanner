@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @scan.name %>
-</p>
+</h1>
 
 <p>
   Found Subdomains: <%= @scan.subdomain_records.length %><hr>
@@ -13,7 +12,6 @@
 </p>
 
 <%= will_paginate @subdomain_records %>
-<%= link_to 'Export', scan_path(@scan, format: :csv), class: "button tiny" %>
+<%= link_to 'Export to CSV', scan_path(@scan, format: :csv), class: "button tiny" %>
 <%= render 'comparison_form' %>
-<%= link_to 'Edit', edit_scan_path(@scan) %> |
-<%= link_to 'Back', scans_path %>
+<%= link_to 'Back to Scan Search', scans_path, class: 'button tiny' %>

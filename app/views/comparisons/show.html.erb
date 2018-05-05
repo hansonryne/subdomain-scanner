@@ -1,18 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="column small-centered">
+    <h1>
+      <%= @comparison.comparer.name %>
+    </h1>
+  </div>
+</div>
 <div class="row" style="text-align: center">
-  <div class="columns small-2 large-4">
+  <div class="columns small-2 large-6">
+    <h3>
+      <%= @comparison.comparer.created_at.strftime("%d %B %y") %>
+    </h3>
     <p>
-    <%= link_to "#{@comparison.comparer.name}", scan_path(@comparison.comparer_id), class: "button expand" %>
+    <%= link_to "Go To", scan_path(@comparison.comparer_id), class: "button tiny" %>
     </p>
     <% @comparison.find_unique_domains[:unique_comparer].each do |r| %>
       <%= r %><br>
     <% end %>
   </div>
 
-  <div class="columns small-2 large-4">
+  <div class="columns small-2 large-6">
+    <h3>
+      <%= @comparison.compared.created_at.strftime("%d %B %y") %>
+    </h3>
     <p>
-    <%= link_to "#{@comparison.compared.name}", scan_path(@comparison.compared_id), class: "button expand" %>
+    <%= link_to "Go To", scan_path(@comparison.compared_id), class: "button tiny" %>
     </p>
     <% @comparison.find_unique_domains[:unique_compared].each do |r| %>
       <%= r %><br>
@@ -21,11 +34,11 @@
 </div>
 
 <div class="row" style="text-align: center">
-  <div class="columns small-4 small-centered">
-<ul class="accordion" data-accordion>
+  <div class="columns small-12 large-6 large-centered">
+<ul class="custom accordion" data-accordion>
   <li class="accordion-navigation">
-    <a href="#panel1a">Common</a>
-    <div id="panel1a" class="content active">
+    <a href="#common-subs">Shared</a>
+    <div id="common-subs" class="content active">
     <% @comparison.find_common_domains.each do |r| %>
       <%= r %><br>
     <% end %>
@@ -35,6 +48,6 @@
 </div>
 </div>
 
-<p>
-  Link for sharing this comparison: <%= link_to request.original_url %>
+<p style="text-align: center;">
+  Link for sharing this comparison: <%= link_to "Copy me", request.original_url %>
 </p>

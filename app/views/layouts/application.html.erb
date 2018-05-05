@@ -16,7 +16,12 @@
     </header>
     <main role="main">
        <%= render 'layouts/messages' %>
-       <%= yield %>
+      
+        <div class="row">
+          <div class="columns small-centered small-12 large-10">
+            <%= yield %>
+          </div>
+      </div>
     </main>
   </body>
 </html>

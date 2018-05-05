@@ -5,6 +5,13 @@ class ScansController < ApplicationController
   # GET /scans.json
   def index
     @scans = Scan.all
+    if params[:q] && params[:q].reject { |k, v| v.blank? }.present?
+      @q = Scan.search(params[:q])
+      @results = @q.result.includes(:subdomain_records)
+    else
+      @q = Scan.search
+      @results = []
+    end
   end
 
   # GET /scans/1

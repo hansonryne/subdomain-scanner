@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background: #eee;
+}
+
+.custom.accordion .accordion-navigation > a, .accordion dd > a {
+  background: #008cba;
+  color: white;
+}
+
+.custom.accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
+  background: #007095;
+}
