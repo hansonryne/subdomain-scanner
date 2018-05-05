@@ -61,7 +61,7 @@ class Scan < ApplicationRecord
         body: "Your scan of #{self.name} is done."
     )
   end
-  
+    
   def as_csv
     header = %w(name)
     CSV.generate(headers: true) do |csv|
