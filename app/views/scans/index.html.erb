@@ -29,12 +29,19 @@
     </table>
   <% end %>
   <br>
-  <%= link_to '...or Generate a New Scan', new_scan_path, :class => 'button expand' %>
+  <%= link_to '...or Generate a New Scan', new_scan_path, :class => 'button' %>
 
-  <ul class="custom accordion" data-accordion>
+<div class="row">
+  <div class="columns large-5 large-centered">
+  <ul class="accordion" data-accordion>
     <li class="accordion-navigation">
-      <a href="#all-scans">Show All Scans</a>
+      <a href="#all-scans" style="background-color: #333333; color: white;">Show All Scans</a>
       <div id="all-scans" class="content" style="background-color: #eee;">
+        <% if Scan.all.empty? %>
+        <p>
+          There are no scans to show
+        </p>
+        <% else %>
         <table style="margin: 0 auto;">
           <thead>
             <tr>
@@ -53,7 +60,10 @@
             <% end %>
           </tbody>
         </table>
+        <% end %>
       </div>
     </li>
   </ul>
+  </div
+</div>
 </div>

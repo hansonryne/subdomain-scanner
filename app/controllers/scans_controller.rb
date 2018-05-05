@@ -37,7 +37,7 @@ class ScansController < ApplicationController
   # POST /scans
   # POST /scans.json
   def create
-    # render plain: params.inspect
+#     render plain: params.inspect
     @scan = Scan.new(scan_params)
 
     respond_to do |format|

@@ -11,38 +11,32 @@
     </div>
   <% end %>
   <div class="field">
-  <%= form.label :name %>
+  <%= form.label "Domain" %>
   <%= form.text_field :name %>
   </div>
 
-<%= form.label "Use Brute" %>
-<div class="switch">
-  <input name="scan[brute]" type="hidden" value="off">
-  <input id="brute" name="scan[brute]" type="checkbox">
-  <%= label_tag :brute %>
-</div>
+  <%= form.label "Brute?" %>
+  <div class="switch">
+    <input name="scan[brute]" type="hidden" value="off">
+    <input id="brute" name="scan[brute]" type="checkbox">
+    <%= label_tag :brute %>
+  </div>
 
-
-
-<%= form.label :threads %>
-<div class="row">
-  <div class="small-10 columns">
-    <div class="range-slider" data-slider data-options="start:16; end: 64; step:16; display_selector: #threads; initial: 16; precision: 0;">
-      <span class="range-slider-handle" role="slider" tabindex="0"></span>
-      <span class="range-slider-active-segment"></span>
+  <div class="field row">
+    <div class="columns small-centered small-4">
+      <%= form.label :threads %>
+      <%= form.select(:threads, [16, 32, 48, 64]) %>
     </div>
   </div>
-  <div class="small-2 columns">
-    <input type="number" id="threads" name="scan[threads]" value="" />
-  </div>
-</div>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.phone_field :phone_number %>
+  <div class="field row">
+    <div class="columns small-centered small-4">
+      <%= form.label :phone_number %>
+      <%= form.phone_field :phone_number %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Scan!", class: 'button round small' %>
   </div>
 <% end %>
