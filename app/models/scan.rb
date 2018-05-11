@@ -10,7 +10,7 @@ class Scan < ApplicationRecord
                                    dependent:   :destroy
   has_many :comparers, through: :reverse_comparisons, source: :comparer
   
-  validates :name, presence: true, format: { with: /\A(?!:\/\/)([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\.[a-zA-Z]{2,11}?\Z/i, message: 'Please enter a valid domain name.' }
+  validates :domain, presence: true, format: { with: /\A(?!:\/\/)([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\.[a-zA-Z]{2,11}?\Z/i, message: 'Please enter a valid domain name.' }
   validates :phone_number, format: { with: /\A\d{10}\Z/ }, :allow_blank => true
   
 
@@ -18,7 +18,7 @@ class Scan < ApplicationRecord
   def do_subdomain_scan
     command = "python " + Rails.root.join('lib', 'assets', 'Sublist3r', 'sublist3r.py').to_s + " "
 
-    outfile = Rails.root.join('lib', 'assets', 'Sublist3r', 'test.txt').to_s
+    outfile = Rails.root.join('lib', 'assets', 'Sublist3r', "#{rand(1..10000)}").to_s
 
     case self.threads
     when 16
@@ -36,12 +36,13 @@ class Scan < ApplicationRecord
       command.concat("-b ")
     end
 
-    command.concat("-d #{self.name} -o " + outfile)
+    command.concat("-d #{self.domain} -o " + outfile)
 
     # puts "#{command}"
     system "#{command}"
 
     raw = File.readlines(outfile)
+    system "rm -rf #{outfile}"
     sub_array = raw.map { |e| e.strip.downcase }.uniq
 
 
@@ -58,7 +59,7 @@ class Scan < ApplicationRecord
     client.messages.create(
         from: from,
         to: to,
-        body: "Your scan of #{self.name} is done."
+        body: "Your scan of #{self.domain} is done."
     )
   end
     
@@ -71,8 +72,5 @@ class Scan < ApplicationRecord
       end
     end
   end
-    
-  def name_and_created_at
-    "#{self.name} -- #{self.created_at.strftime("%d %B %y")}"
-  end
+
 end

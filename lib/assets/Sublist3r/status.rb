@@ -1,6 +1,6 @@
 require 'open-uri'
 
-File.open("./test.txt", "r") do |file_handle|
+File.open("./output.txt", "r") do |file_handle|
   file_handle.each_line do |server|
     begin
       server.chomp!

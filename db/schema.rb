@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_01_202029) do
+ActiveRecord::Schema.define(version: 2018_05_11_182514) do
 
   create_table "comparisons", force: :cascade do |t|
     t.integer "comparer_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_05_01_202029) do
     t.string "brute"
     t.integer "threads"
     t.string "phone_number"
+    t.string "domain"
   end
 
   create_table "subdomain_records", force: :cascade do |t|

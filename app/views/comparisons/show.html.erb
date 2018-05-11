@@ -3,14 +3,14 @@
 <div class="row">
   <div class="column small-centered">
     <h1>
-      <%= @comparison.comparer.name %>
+      <%= @comparison.comparer.domain %>
     </h1>
   </div>
 </div>
 <div class="row" style="text-align: center">
   <div class="columns small-2 large-6">
     <h3>
-      <%= @comparison.comparer.created_at.strftime("%d %B %y") %>
+      <%= @comparison.comparer.created_at.strftime("%d %B %Y") %>
     </h3>
     <p>
     <%= link_to "Go To", scan_path(@comparison.comparer_id), class: "button tiny" %>
@@ -22,7 +22,7 @@
 
   <div class="columns small-2 large-6">
     <h3>
-      <%= @comparison.compared.created_at.strftime("%d %B %y") %>
+      <%= @comparison.compared.created_at.strftime("%d %B %Y") %>
     </h3>
     <p>
     <%= link_to "Go To", scan_path(@comparison.compared_id), class: "button tiny" %>

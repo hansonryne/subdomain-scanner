@@ -12,9 +12,9 @@
       Compare to another scan of this domain:
     </h5>
     <% if Scan.where(name: @scan.name).where.not(id: @scan.id).present? %>
-      <%= form.collection_select(:compared_id, Scan.where(name: @scan.name).where.not(id: @scan.id), :id, :name_and_created_at, prompt: true) %>
+      <%= form.collection_select(:compared_id, Scan.where(name: @scan.name).where.not(id: @scan.id), :id, :name, prompt: true) %>
     <% else %>
-      <%= form.collection_select(:compared_id, Scan.none(), :id, :name_and_created_at, { prompt: 'There are no other scans of this domain...maybe make a new one?' }, { :disabled => 'disabled' } ) %>
+      <%= form.collection_select(:compared_id, Scan.none(), :id, :name, { prompt: 'There are no other scans of this domain...maybe make a new one?' }, { :disabled => 'disabled' } ) %>
     <% end %>
   </div>
 

@@ -39,11 +39,12 @@ class ScansController < ApplicationController
   def create
 #     render plain: params.inspect
     @scan = Scan.new(scan_params)
+    @scan.name = "#{@scan.domain}, #{Date.today}"
 
     respond_to do |format|
       if @scan.save
         SubdomainDoScanJob.perform_later(@scan)
-        format.html { redirect_to @scan, notice: 'Scan was successfully created.' }
+        format.html { redirect_to @scan, notice: 'Scan was successfully created.  It is running in the background now' }
         format.json { render :show, status: :created, location: @scan }
       else
         format.html { render :new }
@@ -84,6 +85,6 @@ class ScansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scan_params
-      params.require(:scan).permit(:name, :brute, :threads, :phone_number)
+      params.require(:scan).permit(:name, :brute, :threads, :phone_number, :domain)
     end
 end
